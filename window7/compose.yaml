@@ -1,0 +1,25 @@
+version: "3"
+services:
+  win7:
+    image: dockurr/windows
+    container_name: window7
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8007:8006
+      - 3387:3389/tcp
+      - 3387:3389/udp
+    environment:
+      RAM_SIZE: "4G"
+      CPU_CORES: "6"
+      DISK_SIZE: "128G"
+      MANUAL: "Y"
+      VERSION: "win7"
+    device_cgroup_rules:
+      - 'c *:* rwm'
+    volumes:
+      - /home/mrbhola/.docker/window7/storage:/storage
+    stop_grace_period: 2m
+    restart: none
